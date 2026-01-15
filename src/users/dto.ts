@@ -1,15 +1,20 @@
-import { IsString, IsInt, isString, IsNumber, IsEmail } from 'class-validator';
+import { IsString, IsInt, isString, IsNumber, IsEmail, IsBoolean, IsPositive, Min, IsOptional } from 'class-validator';
 
-export class DtoUser {
+export class DtoItem {
   @IsString()
-  username: string;
-
-  @IsString()
-  role: string;
+  name: string;
 
   @IsString()
-  password: string;
+  type: string;
 
-  @IsEmail()
-  email: string;
+  @Min(0)
+  @IsPositive()
+  @IsNumber()
+  quantity: number;
+
+  @IsNumber()
+  pricePerUnit: number;
+  @IsBoolean()
+  @IsOptional()
+  hasImage: boolean;
 }
